@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>members</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button [routerLink] = "['/contact']">Go To Contact Page</ion-button>
+  <div *ngIf="selectedMember">
+    <h2>{{selectedMember.name}}</h2>
+    <ion-input [(ngModel)]='selectedMember.name'></ion-input>
+  </div>
+ 
+  <ion-card *ngFor="let member of members" (click)="onSelect(member)" [class.selected]= "member === selectedMember">
+    <ion-card-header>
+      <ion-card-subtitle>{{member.id}}</ion-card-subtitle>
+      <ion-card-title>{{member.name | uppercase }}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Keep close to Nature's heart... and break clear away, once in awhile,
+      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+      
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

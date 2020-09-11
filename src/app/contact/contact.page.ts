@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { Platform } from "@ionic/angular";
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, public platform: Platform) { }
 
   ngOnInit() {
+    console.log(JSON.stringify(this.platform.platforms()));
+    this.platform.resize.subscribe(async () => {
+      console.log('resized ' + 'W: ' + this.platform.width() + ' H: ' + this.platform.height());
+    });
   }
-
+  ionViewWillEnter(){
+    console.log("on init contact");
+  }
+  goMembers(){
+    this.router.navigate(['/members']);
+  }
 }
